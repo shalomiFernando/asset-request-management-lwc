@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Asset Requests">
+        <div style="height: 300px;">
+            <lightning-datatable
+                key-field="Id"
+                data={requests}
+                columns={columns}
+                hide-checkbox-column="true"
+                onrowselection={handleRowSelection}>
+            </lightning-datatable>
+        </div>
+    </lightning-card>
+</template>

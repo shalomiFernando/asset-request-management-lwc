@@ -1,0 +1,44 @@
+<template>
+    <lightning-card class="slds-var-m-around_medium">
+        <!-- Header -->
+        <div class="slds-grid slds-grid_align-spread slds-p-horizontal_large slds-grid_vertical-align-center">
+            <div class="slds-grid slds-grid_vertical-align-center">
+                <lightning-icon icon-name="utility:apps" size="small" class="slds-m-right_small"></lightning-icon>
+                <div>
+                    <h2 class="slds-text-heading_medium">Asset Request Management Portal</h2>
+                    <p class="slds-text-body_small">Create, review, update, and approve internal asset requests</p>
+                </div>
+            </div>
+            <div class="slds-grid slds-grid_vertical-align-center slds-m-right_medium">
+                <lightning-button variant="brand" label="+ New Request" onclick={handleNewRequest} aria-haspopup="dialog" class="slds-m-right_medium"></lightning-button>
+                <lightning-avatar initials="JM" size="small"></lightning-avatar>
+                <div class="slds-m-left_small">
+                    <p class="slds-text-heading_small">{userName}</p>
+                    <p class="slds-text-body_small">{userTitle}</p>
+                </div>
+            </div>
+        </div>
+
+        <c-asset-request-filter 
+            department-options={departmentOptions}
+            asset-type-options={assetTypeOptions}
+            status-options={statusOptions}
+            priority-options={priorityOptions}
+            onsearch={handleSearch} 
+            onclear={handleClear}>
+        </c-asset-request-filter>
+        <c-asset-request-grid 
+            requests={requests} 
+            columns={columns} 
+            onrowselection={handleRowSelection}>
+        </c-asset-request-grid>
+        <!--<template if:true={showForm}>
+            <c-asset-request-form></c-asset-request-form>
+        </template>-->
+        <c-reusable-pagination 
+            current-page={currentPage} 
+            total-pages={totalPages} 
+            onpagechange={handlePageChange}>
+        </c-reusable-pagination>
+    </lightning-card>
+</template>
