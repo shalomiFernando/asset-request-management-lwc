@@ -6,6 +6,10 @@
                 data={requests}
                 columns={columns}
                 hide-checkbox-column="true"
+                draft-values={draftValues}
+                onsave={handleSave}
+                oncellchange={handleCellChange}
+                onrowaction={handleRowAction}
                 onrowselection={handleRowSelection}>
             </lightning-datatable>
         </div>

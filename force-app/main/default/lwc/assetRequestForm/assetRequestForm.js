@@ -1,4 +1,4 @@
-import { LightningElement, api } from 'lwc';
+import { api } from 'lwc';
 import LightningModal from 'lightning/modal';
 import saveAssetRequest from '@salesforce/apex/AssetRequestController.saveAssetRequest';
 

@@ -39,7 +39,6 @@ export default class AssetRequestFilter extends LightningElement {
     }
 
     handleClear() {
-        // reset internal filter state
         this.filterValues = {
            employeeName: '',
            department: '',
@@ -50,7 +49,6 @@ export default class AssetRequestFilter extends LightningElement {
            dateTo: ''
         };
 
-        // clear the actual UI inputs
         const inputs = this.template.querySelectorAll(
             'lightning-input, lightning-combobox'
         );
@@ -58,7 +56,6 @@ export default class AssetRequestFilter extends LightningElement {
             input.value = null;
         });
 
-        // trigger search with cleared filters
         this.dispatchEvent(
            new CustomEvent('search', {
               detail: { filters: this.filterValues }
