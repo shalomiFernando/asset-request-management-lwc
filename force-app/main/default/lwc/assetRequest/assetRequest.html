@@ -29,12 +29,10 @@
         </c-asset-request-filter>
         <c-asset-request-grid 
             requests={requests} 
-            columns={columns} 
+            columns={columns}
+            onupdate={handleUpdate} 
             onrowselection={handleRowSelection}>
         </c-asset-request-grid>
-        <!--<template if:true={showForm}>
-            <c-asset-request-form></c-asset-request-form>
-        </template>-->
         <c-reusable-pagination 
             current-page={currentPage} 
             total-pages={totalPages} 

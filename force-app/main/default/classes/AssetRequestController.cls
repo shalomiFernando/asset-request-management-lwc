@@ -44,7 +44,9 @@ public with sharing class AssetRequestController {
             System.debug('newRequest: '+newRequest);
 
             insert newRequest;
-            Asset_Request__c insertedAssetRequest = [SELECT Id
+            Asset_Request__c insertedAssetRequest = [SELECT Id, Status__c, Employee_Name__c, Employee_Email__c, 
+                                                     Department__c, Business_Justification__c, Asset_Type__c, Priority__c, Quantity__c,
+                                                     Required_By_Date__c,Requested_Date__c
                                                      FROM Asset_Request__c
                                                      WHERE Id =: newRequest.Id];
 
@@ -124,12 +126,15 @@ public with sharing class AssetRequestController {
             Date dateTo   = safeConvertDate(filters.get('dateTo'));
 
             if (dateFrom != null) {
-                whereClauses.add('Requested_Date__c >= ' + dateFrom.format());
+              String formattedFrom = String.valueOf(dateFrom).replace('/', '-');
+              whereClauses.add('Requested_Date__c >= ' + formattedFrom);
             }
 
             if (dateTo != null) {
-                whereClauses.add('Requested_Date__c <= ' + dateTo.format());
+              String formattedTo = String.valueOf(dateTo).replace('/', '-');
+              whereClauses.add('Requested_Date__c <= ' + formattedTo);
             }
+
         }
 
         String whereClause = whereClauses.isEmpty()
@@ -205,4 +210,13 @@ public with sharing class AssetRequestController {
             throw new AuraHandledException(e.getMessage());
         }
     }  
+
+    @AuraEnabled
+    public static void updateAssetRequests(List<Asset_Request__c> data) {
+        try {
+            update data;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
 }
